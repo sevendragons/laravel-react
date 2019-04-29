@@ -1,11 +1,11 @@
-`php artisan preset react`
-`php artisan make:migration create_follows_table --create=follows`
-`php artisan make:event PostCreated`
+`php artisan preset react` <br/>
+`php artisan make:migration create_follows_table --create=follows`<br/>
+`php artisan make:event PostCreated`<br/>
 
-`composer require pusher/pusher-php-server`
+`composer require pusher/pusher-php-server`<br/>
 
 
-`npm i && npm run dev`
+`npm i && npm run dev`<br/>
 `npm run watch`
 
 

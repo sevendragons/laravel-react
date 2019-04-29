@@ -71830,13 +71830,10 @@ function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this3 = this;
-
       Echo["private"]('new-post').listen('PostCreated', function (e) {
-        // console.log(e);
-        _this3.setState({
-          posts: [e.post].concat(_toConsumableArray(_this3.state.posts))
-        });
+        console.log('from pusher', e.post); // this.setState({ posts : [e.post, ...this.state.posts] });
+
+        if (window.Laravel.user.following.includes(e.post.user.id)) {}
       }); // this.interval = setInterval(() => this.getPosts(), 50000);
     }
   }, {
@@ -71846,21 +71843,21 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this4 = this;
+      var _this3 = this;
 
       e.preventDefault(); // this.postData();
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/posts', {
         body: this.state.body
       }).then(function (response) {
-        console.log(response);
+        console.log('from handle submit', response);
 
-        _this4.setState({
-          posts: [].concat(_toConsumableArray(_this4.state.posts), [response.data]),
+        _this3.setState({
+          posts: [response.data].concat(_toConsumableArray(_this3.state.posts)),
           body: ''
         });
 
-        _this4.formRef.reset();
+        _this3.formRef.reset();
       });
     }
   }, {
@@ -71903,7 +71900,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
@@ -71920,7 +71917,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "I'm an app component! form"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         ref: function ref(_ref) {
-          return _this5.formRef = _ref;
+          return _this4.formRef = _ref;
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"

@@ -33,8 +33,12 @@ class App extends Component {
     }
     componentDidMount(){
         Echo.private('new-post').listen('PostCreated', e => {
-                // console.log(e);
-                this.setState({ posts : [e.post, ...this.state.posts] });
+                console.log('from pusher', e.post);
+                // this.setState({ posts : [e.post, ...this.state.posts] });
+            if (window.Laravel.user.following.includes(e.post.user.id)) {
+
+            }
+
             });
 
         // this.interval = setInterval(() => this.getPosts(), 50000);
@@ -51,9 +55,9 @@ class App extends Component {
             body: this.state.body
         })
         .then(response => {
-            console.log(response);
+            console.log('from handle submit',response);
             this.setState ({
-                posts: [...this.state.posts, response.data],
+                posts: [response.data, ...this.state.posts],
                 body:''
             });
             this.formRef.reset();
